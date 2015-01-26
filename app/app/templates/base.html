@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope itemtype="http://schema.org/Blog">
+<head>
+<!--
+
+	---------------------
+	ISSUE BY PIXEL LAB (modified by EDMUND FUNG for Flask)
+	VERSION 1.1
+	---------------------
+	
+	HTTP://WWW.PIXELLAB.CO/THEME/ISSUE
+	http://issuebypixellab.tumblr.com/
+	
+-->
+
+<title>{{ title }}</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- [COLOR VARIABLES] -->
+<meta name="color:Text" content="#444444" />
+
+<!-- [IMAGE VARIABLES] -->
+<meta name="image:Background" content="" />
+<meta name="image:Sidebar" content="" />
+
+<!-- [FONT VARIABLES] -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700">
+<meta name="font:Text" content="monospace" />
+
+<!-- [SELECT VARIABLES] -->
+<meta name="select:Sidebar title size" title="Small" content="h4" />
+<meta name="select:Sidebar title size" title="Medium" content="h3" />
+<meta name="select:Sidebar title size" title="Large" content="h2" />
+<meta name="select:Sidebar title size" title="Extra Large" content="h1" />
+<meta name="select:Sidebar link underline style" title="None" content="none" />
+<meta name="select:Sidebar link underline style" title="Solid" content="solid" />
+<meta name="select:Sidebar link underline style" title="Dotted" content="dotted" />
+<meta name="select:Sidebar link underline style" title="Dashed" content="dashed" />
+
+<!-- [IF VARIABLES] -->
+<meta name="if:Horizontally align background to center" content="1" />
+<meta name="if:Vertically align background to center" content="1" />
+<meta name="if:Fix background" content="1" />
+<meta name="if:Repeat background" content="1" />
+<meta name="if:Stretch background" content="1" />
+<meta name="if:Use default theme fonts" content="1" />
+<meta name="if:Uppercase titles" content="1" />
+<meta name="if:Group additional pages together" content="1" />
+<meta name="if:Enable Infinite Scroll" content="1" />
+<meta name="if:Use high resolution photos" content="1" />
+
+<!-- [TEXT VARIABLES] -->
+<meta name="text:Additional pages title" content="" />
+<meta name="text:Sidebar tags" content="Landscape, Black and White" />
+<!-- TO SETUP EVALUATR, GO TO HTTP://EVALUATR.PIXELLAB.CO -->
+<meta name="text:Evaluatr ID" content="" />
+<meta name="text:Google Analytics ID" content="" />
+
+<link rel="shortcut icon" href="/static/favicon.ico" />
+<link rel="apple-touch-icon" sizes="128x128" href="/static/logo.png" />
+
+<link rel="stylesheet" href="/static/issue.css" />
+<link rel="stylesheet" href="/static/style.css" />
+
+<style type="text/css">
+::selection { background-color: rgba(255,224,51,0.6); }
+::-moz-selection { background-color: rgba(255,224,51,0.6); }
+body {
+	color: #444444;
+	background: #fafafa;
+	background-size: contain;
+}
+h1, h2, h3, h4, h5, h6 {
+	color: #111111;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+a:hover h1, a:hover h2, a:hover h3, a:hover h4, a:hover h5, a:hover h6 {
+	color: #ffe033;
+}
+p a:hover, li a:hover {
+	background-color: rgba(255,224,51,0.6);
+}
+#sidebar_portrait {
+	background-image: url("/static/logo.png");
+}
+#sidebar h6 {
+	color: #444444;
+}
+#sidebar li a {
+	border-bottom-style: none;
+	color: #111111;
+}
+#search::-webkit-input-placeholder {
+	color: #111111;
+}
+#search::-moz-input-placeholder {
+	color: #111111;
+}
+#search:-moz-input-placeholder {
+	color: #111111;
+}
+#search:-ms-input-placeholder {
+	color: #111111;
+}
+.index_page #pagination {
+	display: none;
+}
+.post .link_container {
+	background-color: #444444;
+	color: #fafafa;
+}
+.post .link_container:after {
+	border-color: rgba(250,250,250,0.4);
+}
+.post .link_container:hover:after {
+	border-color: rgba(250,250,250,0.8);
+}
+.post .read_more {
+	border-color: #444444;
+}
+#post_information h6 {
+	color: #444444;
+}
+
+
+</style>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+
+{% block extraHead %}{% endblock%}
+
+<script>
+	$( document ).ready(function() {
+		$("#playPause").click(function(){
+			event.preventDefault();
+		
+			$.post("/music/playPause");
+		});
+	});
+</script>
+
+</head>
+<body class="index_page">		
+	<div id="sidebar" class="has_description">
+		<div id="sidebar_portrait" class="square"></div> 
+		<h4>music</h4>
+		
+		<br>
+		<ul>	
+			<li><a id='nowPlaying' href="/nowPlaying" title="now playing" {% if title == 'home' %}style="background-color: rgba(255,224,51,0.6);"{% endif%}>now playing</a></li>
+		</ul>
+
+		<h6>library</h6>
+
+		<ul>
+			<li><a href="/music" title="music" {% if title == 'music' %}style="background-color: rgba(255,224,51,0.6);"{% endif%}>music</a></li>
+			<li><a href="/settings" title="settings" {% if title == 'settings' %}style="background-color: rgba(255,224,51,0.6);"{% endif%}>settings</a></li>
+		</ul>
+
+		<h6>controls</h6>
+
+		<ul>
+			<li><a id='playPause' href="{URL}">play/pause</a></li>
+			<li><a id='next' href="{URL}">next</a></li>
+		</ul>
+
+	</div>
+
+	<div id="posts">
+
+	{% block content %}{% endblock %}
+
+	</div>
+
+	<script type="text/javascript">
+		var Issue = {
+			index_page		:	true,
+			tags			:	"music butler",
+			infinite_scroll		:	true,
+			background_color	:	'#fafafa',
+			text_color		:	'#444444',
+			accent_color		:	'#ffe033'
+		}
+	</script>
+	<script type="text/javascript" src="/static/issue.js"></script>
+	<div style="position: fixed; bottom: 8px; right: 8px; padding: 4px 8px; border-radius: 2px; color: rgb(68, 68, 68); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 10px; background: rgb(250, 250, 250);"><p>music server by <a href="http://adventureswithedmund.tumblr.com" target="_blank" style="text-decoration:none;font-weight:bold;font-weight:500">edmund fung</a></p></div>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope itemtype="http://schema.org/Blog">
+<head>
+<!--
+
+	---------------------
+	UNTITLED BY PIXEL LAB
+	VERSION 1.1
+	---------------------
+	
+	HTTP://WWW.PIXELLAB.CO/THEME/ISSUE
+	
+-->
+
+<title>{block:SearchPage}{SearchQuery} / {/block:SearchPage}{block:TagPage}{SearchQuery} / {/block:TagPage}{block:PostSummary}{PostSummary} / {/block:PostSummary}{Title}</title>{block:Description}
+
+<meta name="description" content="{MetaDescription}" />{/block:Description}
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />{block:Hidden}
+
+<!-- [COLOR VARIABLES] -->
+<meta name="color:Text" content="#444444" />
+
+<!-- [IMAGE VARIABLES] -->
+<meta name="image:Background" content="" />
+<meta name="image:Sidebar" content="" />
+
+<!-- [FONT VARIABLES] -->
+<meta name="font:Text" content="monospace" />
+
+<!-- [SELECT VARIABLES] -->
+<meta name="select:Sidebar title size" title="Small" content="h4" />
+<meta name="select:Sidebar title size" title="Medium" content="h3" />
+<meta name="select:Sidebar title size" title="Large" content="h2" />
+<meta name="select:Sidebar title size" title="Extra Large" content="h1" />
+<meta name="select:Sidebar link underline style" title="None" content="none" />
+<meta name="select:Sidebar link underline style" title="Solid" content="solid" />
+<meta name="select:Sidebar link underline style" title="Dotted" content="dotted" />
+<meta name="select:Sidebar link underline style" title="Dashed" content="dashed" />
+
+<!-- [IF VARIABLES] -->
+<meta name="if:Horizontally align background to center" content="1" />
+<meta name="if:Vertically align background to center" content="1" />
+<meta name="if:Fix background" content="0" />
+<meta name="if:Repeat background" content="1" />
+<meta name="if:Stretch background" content="1" />
+<meta name="if:Use default theme fonts" content="1" />
+<meta name="if:Uppercase titles" content="1" />
+<meta name="if:Group additional pages together" content="1" />
+<meta name="if:Enable Infinite Scroll" content="1" />
+<meta name="if:Use high resolution photos" content="0" />
+
+<!-- [TEXT VARIABLES] -->
+<meta name="text:Additional pages title" content="" />
+<meta name="text:Sidebar tags" content="Landscape, Black and White" />
+<!-- TO SETUP EVALUATR, GO TO HTTP://EVALUATR.PIXELLAB.CO -->
+<meta name="text:Evaluatr ID" content="" />
+<meta name="text:Google Analytics ID" content="" />{/block:Hidden}
+
+<link rel="shortcut icon" href="{Favicon}" />
+<link rel="alternate" type="application/rss+xml" href="{RSS}" />{block:IfUseDefaultThemeFonts}
+
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:700" />{/block:IfUseDefaultThemeFonts}
+<link rel="stylesheet" href="http://static.tumblr.com/m9ln1jy/JdRnajktj/issue.css" />
+
+<style type="text/css">
+::selection { background-color: rgba({RGBAccentColor},0.6); }
+::-moz-selection { background-color: rgba({RGBAccentColor},0.6); }
+body {{block:IfNotUseDefaultThemeFonts}
+	font-family: {font:Text};{/block:IfNotUseDefaultThemeFonts}
+	color: {color:Text};
+	background: {BackgroundColor}{block:IfBackgroundImage} url("{image:Background}"){block:IfHorizontallyAlignBackgroundToCenter} center{/block:IfHorizontallyAlignBackgroundToCenter}{block:IfNotHorizontallyAlignBackgroundToCenter} top{/block:IfNotHorizontallyAlignBackgroundToCenter}{block:IfVerticallyAlignBackgroundToCenter} center{/block:IfVerticallyAlignBackgroundToCenter}{block:IfNotVerticallyAlignBackgroundToCenter} top{/block:IfNotVerticallyAlignBackgroundToCenter}{block:IfFixBackground} fixed{/block:IfFixBackground}{block:IfNotRepeatBackground} no-repeat{/block:IfNotRepeatBackground}{/block:IfBackgroundImage};{block:IfStretchBackground}
+	background-size: contain;{/block:IfStretchBackground}
+}
+h1, h2, h3, h4, h5, h6 {{block:IfNotUseDefaultThemeFonts}
+	font-family: {TitleFont};
+	font-weight: {TitleFontWeight};{/block:IfNotUseDefaultThemeFonts}
+	color: {TitleColor};{block:IfUppercaseTitles}
+	letter-spacing: 2px;
+	text-transform: uppercase;{/block:IfUppercaseTitles}
+}
+a:hover h1, a:hover h2, a:hover h3, a:hover h4, a:hover h5, a:hover h6 {
+	color: {AccentColor};
+}
+p a:hover, li a:hover {
+	background-color: rgba({RGBAccentColor},0.6);
+}
+#sidebar_portrait {
+	background-image: url("{PortraitURL-128}");
+}
+#sidebar h6 {
+	color: {color:Text};
+}
+#sidebar li a {
+	border-bottom-style: {select:Sidebar link underline style};
+	color: {TitleColor};
+}
+#search::-webkit-input-placeholder {
+	color: {TitleColor};
+}
+#search::-moz-input-placeholder {
+	color: {TitleColor};
+}
+#search:-moz-input-placeholder {
+	color: {TitleColor};
+}
+#search:-ms-input-placeholder {
+	color: {TitleColor};
+}{block:IfEnableInfiniteScroll}
+.index_page #pagination {
+	display: none;
+}{/block:IfEnableInfiniteScroll}
+.post .link_container {
+	background-color: {color:Text};
+	color: {BackgroundColor};
+}
+.post .link_container:after {
+	border-color: rgba({RGBBackgroundColor},0.4);
+}
+.post .link_container:hover:after {
+	border-color: rgba({RGBBackgroundColor},0.8);
+}
+.post .read_more {
+	border-color: {color:Text};
+}
+#post_information h6 {
+	color: {color:Text};
+}
+
+{CustomCSS}
+</style>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body class="{block:IndexPage}index_page{block:SearchPage} search_page{/block:SearchPage}{block:TagPage} tag_page{/block:TagPage}{/block:IndexPage}{block:PermalinkPage}permalink_page{/block:PermalinkPage}">		
+	<div id="sidebar" class="{block:ShowDescription}has_description{/block:ShowDescription}">
+		<a href="/" id="sidebar_title" title="{lang:Home}">{block:IfSidebarImage}
+			<img src="{image:Sidebar}" alt="{Title}" />
+			
+{/block:IfSidebarImage}{block:IfNotSidebarImage}{block:ShowAvatar} 
+			<div id="sidebar_portrait" class="{AvatarShape}"></div>{/block:ShowAvatar} 
+
+			<{select:Sidebar title size}>{Title}</{select:Sidebar title size}>{/block:IfNotSidebarImage}
+		</a>{block:ShowDescription}
+
+		<div id="sidebar_description">
+			{Description}
+		</div>{/block:ShowDescription}
+
+		<ul>{block:AskEnabled}
+			<li><a href="/ask" title="{AskLabel}">{AskLabel}</a></li>{/block:AskEnabled}{block:SubmissionsEnabled}
+			<li><a href="/submit" title="{SubmitLabel}">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
+			<li><a href="/archive" title="{lang:Archive}">{lang:Archive}</a></li>
+			<li><a href="/random" title="{lang:Random post}">{lang:Random}</a></li>{block:IfNotGroupAdditionalPagesTogether}{block:HasPages}{block:Pages}
+			<li><a href="{URL}" title="{Label}">{Label}</a></li>{/block:Pages}{/block:HasPages}{/block:IfNotGroupAdditionalPagesTogether}
+			<li>
+				<form method="get" action="/search">
+					<input name="q" placeholder="{lang:Search}" value="{SearchQuery}" id="search" />
+				</form>
+			</li>
+		</ul>{block:IfGroupAdditionalPagesTogether}{block:HasPages}
+
+		<h6>{block:IfNotAdditionalPagesTitle}{lang:Pages}{/block:IfNotAdditionalPagesTitle}{text:Additional pages title}</h6>
+
+		<ul>{block:Pages}
+			<li><a href="{URL}">{Label}</a></li>{block:Pages}
+		</ul>{/block:HasPages}{/block:IfGroupAdditionalPagesTogether}{block:IfSidebarTags}
+
+		<h6>{lang:Tags}</h6>
+
+		<ul id="sidebar_tags"></ul>{/block:IfSidebarTags}{block:Pagination}
+
+		<ul id="pagination">{block:PreviousPage}
+			<li><a href="{PreviousPage}" id="back">{lang:Previous Page}</a></li>{/block:PreviousPage}{block:NextPage}
+			<li><a href="{NextPage}" id="next">{lang:Next Page}</a></li>{/block:NextPage}
+		</ul>{/block:Pagination}{block:PermalinkPagination}
+
+		<ul id="pagination">{block:PreviousPost}
+			<li><a href="{PreviousPost}" id="back">{lang:Previous Post}</a></li>{/block:PreviousPost}{block:NextPost}
+			<li><a href="{NextPost}" id="next">{lang:Next Post}</a></li>{/block:NextPost}
+		</ul>{/block:PermalinkPagination}
+	</div>
+
+	<div id="posts">{block:Posts}
+		<div class="post {PostType}{block:Photoset}set{block:IfTumblrPhotosetLayout} tumblr_layout{/block:IfTumblrPhotosetLayout}{/block:Photoset}{block:AudioEmbed} audio_embed{/block:AudioEmbed}" id="P{PostID}">{block:Text}
+			<div class="inner">{block:Title}
+				<h4>{Title}</h4>{/block:Title}
+				{Body}{block:More}
+				<div class="read_more"><a href="{Permalink}">{lang:Read more}</a></div>{/block:More}
+			</div>{/block:Text}{block:Answer}
+			<div class="inner">
+				<p><strong>{lang:Asker asked}: "{Question}"</strong></p>
+				{Answer}{block:More}
+				<div class="read_more"><a href="{Permalink}">{lang:Read more}</a></div>{/block:More}
+			</div>{/block:Answer}{block:Chat}
+			<div class="inner">{block:Title}
+				<h4>{Title}</h4>{/block:Title}
+				<div class="lines">{block:Lines}
+					<div class="line {Alt}">
+						{block:Label}<strong>{Label}</strong>{/block:Label} {Line}
+					</div>{/block:Lines}
+				</div>
+			</div>{/block:Chat}{block:Quote}
+			<div class="inner">
+				<h4>"{Quote}"</h4>{block:Source}
+				<p>— {Source}</p>{/block:Source}
+			</div>{/block:Quote}{block:Link}
+			<div class="inner">
+				<div class="link_container">
+					<h4><a href="{URL}" {Target}>{Name}</a></h4>{block:Host}
+					<p>{Host}</p>{/block:Host}
+				</div>{block:Description}
+				{Description}{block:More}
+				<div class="read_more"><a href="{Permalink}">{lang:Read more}</a></div>{/block:More}{/block:Description}
+			</div>{/block:Link}{block:Photo}
+			<div class="post_media">
+				{LinkOpenTag}<img {block:IndexPage}src="{block:IfUseHighResolutionPhotos}{PhotoURL-HighRes}{/block:IfUseHighResolutionPhotos}{block:IfNotUseHighResolutionPhotos}{PhotoURL-400}{block:IfNotUseHighResolutionPhotos}" width="{PhotoWidth-400}" height="{PhotoHeight-400}"{/block:IndexPage}{block:PermalinkPage}src="{PhotoURL-HighRes}" width="{PhotoWidth-HighRes}" height="{PhotoHeight-HighRes}"{/block:PermalinkPage} alt="{PhotoAlt}" class="main_image" />{LinkCloseTag}
+			</div>{/block:Photo}{block:Photoset}
+			<div class="post_media">
+				{block:IndexPage}{block:Photos}<img src="{PhotoURL-400}" width="{PhotoWidth-400}" height="{PhotoHeight-400}" alt="{PhotoAlt}" class="main_image" />{/block:Photos}{/block:IndexPage}{block:PermalinkPage}{Photoset}{/block:PermalinkPage}
+			</div>{/block:Photoset}{block:Video}
+			{block:IndexPage}<div class="post_media"{block:VideoThumbnail} style="background-image:url('{VideoThumbnailURL}')"{/block:VideoThumbnail}>
+				<div class="retro_fuzz"></div>
+			</div>{/block:IndexPage}{block:PermalinkPage}
+			<div class="post_media">
+				{Video-700}
+			</div>{/block:PermalinkPage}{/block:Video}{block:Audio}
+			<div class="post_media">
+				{block:AudioPlayer}<img {block:AlbumArt}src="{AlbumArtURL}" data-default-art-{/block:AlbumArt}src="http://static.tumblr.com/uqie0nv/1vIn5g72i/default_album_art.png" {block:IndexPage}width="400" height="400"{/block:IndexPage}{block:PermalinkPage}width="700" height="700"{/block:PermalinkPage}{block:Album} alt="{Album}"{/block:Album} class="main_image" />{/block:AlbumArt}{/block:AudioPlayer}{block:AudioEmbed}{AudioEmbed-400}{/block:AudioEmbed}
+			</div>{/block:Audio}{block:IndexPage}
+
+			<div class="post_information">
+				<div class="central_container">
+					<div class="inner_container">
+						<div class="post_controls">
+							{LikeButton color="white" size="24"}
+							{ReblogButton color="white" size="24"}{block:NoteCount}
+							<a href="{Permalink}" class="note_count">{FormattedNoteCount}</a>{/block:NoteCount}
+						</div>{block:IfEvaluatrID}
+						<div class="evaluatr">
+							<iframe src="http://evaluatr.pixellab.co/frame/?id={text:Evaluatr ID}&tumblr={Name}&pid={PostID}&size=24&color=white" width="128" height="24" allowtransparency style="overflow:hidden; border:0"></iframe>
+						</div>{/block:IfEvaluatrID}
+						<div class="post_meta date_and_source">
+							<h6 class="date"><a href="{Permalink}">{TimeAgo}</a></h6>{block:ContentSource}
+							<h6 class="source"><a href="{SourceURL}">Via {SourceTitle}</a></h6>{/block:ContentSource}
+						</div>{block:HasTags}
+						<div class="post_meta tags">{block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}</div>{/block:HasTags}
+					</div>
+				</div>
+			</div>{/block:IndexPage}
+		</div>{block:PermalinkPage}{block:Date}
+
+		<div id="post_information" class="post">
+			{AudioPlayerWhite}{block:Caption}
+
+			<div id="post_caption" class="post_information_sec">
+				{Caption}
+			</div>{/block:Caption}{block:IfEvaluatrID}
+
+			<div id="evaluatr" class="post_information_sec">
+				<iframe src="http://evaluatr.pixellab.co/frame/?id={text:Evaluatr ID}&tumblr={Name}&pid={PostID}&size=24&custom_color=rgba({RGBColor:Text},1)" width="128" height="24" allowtransparency style="overflow:hidden; border:0"></iframe>
+			</div>{/block:IfEvaluatrID}
+
+			<div id="post_notes" class="post_information_sec">
+				<h6>{lang:Posted TimeAgo with NoteCount notes}</h6>{block:PostNotes}
+				{PostNotes-64}{/block:PostNotes}
+			</div>
+		</div>{/block:Date}{/block:PermalinkPage}{/block:Posts}
+	</div>
+
+	<script type="text/javascript">
+		var Issue = {
+			index_page		:	{block:IndexPage}true{/block:IndexPage}{block:PermalinkPage}false{/block:PermalinkPage},
+			tags			:	{block:IfSidebarTags}"{text:Sidebar tags}"{/block:IfSidebarTags}{block:IfNotSidebarTags}false{/block:IfNotSidebarTags},
+			infinite_scroll		:	{block:IfEnableInfiniteScroll}true{block:IfEnableInfiniteScroll}{block:IfNotEnableInfiniteScroll}false{block:IfNotEnableInfiniteScroll},
+			background_color	:	'{BackgroundColor}',
+			text_color		:	'{color:Text}',
+			accent_color		:	'{AccentColor}'
+		}
+	</script>
+	<script type="text/javascript" src="http://static.tumblr.com/m9ln1jy/N3xnajktr/issue.js"></script>
+</body>
+</html>

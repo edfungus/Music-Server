@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block extraHead %}
+	<script>
+		$( document ).ready(function() {
+			$("#rescanButton").click(function(){
+				event.preventDefault();
+			
+				$('#rescanResult').html('... scanning');	
+
+				$.post("/settings/libraryUpdate",
+				function(data){
+					$('#rescanResult').html('... '+ data);
+				});
+			});
+		});
+
+		/*$( document ).ready(function() {
+			$("#rescanButton").click(function(){
+				event.preventDefault();
+			
+				$('#rescanResult').html('... scanning');	
+
+				$.post("/music/search",
+				{ query: "exo" },		
+				function(data){
+					console.log(data);
+				});
+			});
+		});*/
+	</script>
+{% endblock%}
+
+{% block content %}
+<h2>some settings</h2><br>
+<a href='' id='rescanButton' class='links'>rescan music library</a><span id='rescanResult'></span>
+
+{% endblock %}

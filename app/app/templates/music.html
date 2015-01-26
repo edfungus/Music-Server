@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block extraHead %}
+	<script>
+		function displaySongs(songs) {
+			var displayText = ''
+			$.each( songs, function(key, value){
+
+				displayText = "<div class='songRow'>\n";
+				displayText = displayText + "<div class='songCell titleCell'><a class='titleLink links' href=''>"+value[1]+"</a></div>"
+											+ "<div class='songCell artistCell'><a class='artistLink links' href='/music/search/"+value[4]+"'>"+value[2]+"</a></div>"
+											+ "<div class='songCell albumCell'><a class='albumLink links' href='/music/search/"+value[4]+"/"+value[5]+"'>"+value[3]+"</a></div>";
+				displayText = displayText + "</div>";
+				$('#songTable').append(displayText);
+			});
+		}
+		function displayAlbums(albums) {
+			var displayText = '';
+			$.each( albums, function(key, value){
+
+				albumUrl = "/static/music_artwork/" + value[2];
+				linkUrl = '/music/search/'+value[3]+'/'+value[4];
+				displayText = '<div class="albumCovers"><a artist="'+value[0]+'" album="'+value[1]+'" class="coverArtwork" href="'+linkUrl+'"><img class="coverArtwork" src="'+albumUrl+'"></a></div>';
+				$('#albumTable').append(displayText);
+			});
+			$('#albumTable').append('<div></div>');
+		}
+		function clearSearch(){
+			$('.songRow').remove()
+			$('.albumCovers').remove()
+		}
+
+		$( document ).ready(function() {
+
+			var allMusic = true, 
+				delay = 300,
+				mouseClicks = 0,
+				timer = null;
+			$("#searchMusicBox").focus();
+
+			{% if searchBoxText %}		
+				$("#searchMusicBox").val('{{ searchBoxText }}')			//for artist and album display
+				$("#searchMusicBox").css('color', 'silver')
+			{% endif %}
+
+			$('#songTable').on("click", ".titleLink", function(){		
+				event.preventDefault();
+				mouseClicks++;
+				var title = $(this).text();
+				var artist = $(this).parent().next().children().text();
+				var album = $(this).parent().next().next().children().text();;
+
+				if(mouseClicks === 1) {										//one click - add to queue
+
+					link = this;
+					timer = setTimeout(function(link) {
+						mouseClicks = 0; 
+
+						$.ajax({
+							type: "POST",
+							url: "/music/queue",
+							dataType: "json",
+							data: { artist: artist,
+									title: title,
+									album: album },
+							cache: false,
+							success: function(){
+								$('#nowPlaying').css('background-color','rgba(250,128,114,0.2)');
+								$('#nowPlaying').animate({backgroundColor:'rgba(250,128,114,0)'}, 1000);
+							}
+						});
+					}, delay);
+
+				} else {												//double click - add the queue and play
+					clearTimeout(timer);  //prevent single-click action
+					mouseClicks = 0;
+
+					$.ajax({
+						type: "POST",
+						url: "/music/play",
+						dataType: "json",
+						data: { artist: artist,
+								title: title,
+								album: album },
+						cache: false,
+						success: function(){
+							$('#nowPlaying').css('background-color','rgba(255,224,51,0.6)');
+							$('#nowPlaying').animate({backgroundColor:'rgba(255,224,51,0)'}, 1000);
+						}
+					});
+				}
+			});
+
+			$('#songTable').on("dblclick", ".titleLink", function(){		//prevent regular double click
+				event.preventDefault();				
+			});
+
+			$("#searchMusicBox").on("keyup", function(e) {
+				// Set Search String
+				var searchString = $(this).val();
+				$(this).css('color', 'rgba(255,224,51,0.6)')
+
+				// Do Search
+				if(searchString !== ''){
+					$.ajax({
+						type: "POST",
+						url: "/music/search",
+						dataType: "json",
+						data: { query: searchString },
+						cache: false,
+						success: function(data){
+							clearSearch();
+							displayAlbums(data.albums)
+							displaySongs(data.titles)
+							allMusic = false;
+						}
+					});
+				} else if(allMusic == false) {
+					$.ajax({
+						type: "POST",
+						url: "/music/search/all",
+						dataType: "json",
+						cache: false,
+						success: function(data){
+							clearSearch();
+							displaySongs(data.titles)
+							allMusic = true;
+						}
+					});
+				}
+			});
+
+			$(document).keypress(function(e) {				//keyboard override!
+				if($("#searchMusicBox").is(":focus") != true){
+					//$("#searchMusicBox").val($("#searchMusicBox").val() + String.fromCharCode(e.which));
+					$("#searchMusicBox").focus();
+				}
+			});
+		});
+	</script>
+{% endblock%}
+
+{% block content %}
+
+	<input id='searchMusicBox' type='text' placeholder='search music'>
+
+	<section id='albumTable'>
+		{% for albumURL in albumCovers %}
+			<div class="albumCovers"><a artist='{{ albumURL.artist }}' album='{{ albumURL.album }}' class="coverArtwork" href="/music/search/{{ albumURL.artistURL }}/{{ albumURL.albumURL }}"><img src="/static/music_artwork/{{ albumURL.artwork }}"></a></div>
+		{% endfor %}
+	</section>
+
+	<section id='songTable'>
+		{% for song in songs %}
+			<div class='songRow'>
+				<div class='songCell titleCell'><a class='titleLink links' href=''>{{ song.title }}</a></div>
+				<div class='songCell artistCell'><a class='artistLink links' href='/music/search/{{ song.artistURL }}'>{{ song.artist }}</a></div>
+				<div class='songCell albumCell'><a class='albumLink links' href='/music/search/{{ song.artistURL }}/{{ song.albumURL }}'>{{ song.album }}</a></div>
+			</div>
+		{% endfor %}
+	</section>
+	
+{% endblock %}
