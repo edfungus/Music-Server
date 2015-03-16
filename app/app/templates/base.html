@@ -139,6 +139,11 @@ p a:hover, li a:hover {
 		
 			$.post("/music/playPause");
 		});
+		$("#next").click(function(){
+			event.preventDefault();
+		
+			$.post("/music/next");
+		});
 	});
 </script>
 

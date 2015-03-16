@@ -1,0 +1,89 @@
+/*my css...*/
+/*---general---*/
+a.links{
+	text-decoration: none;
+	margin-bottom: 1px;
+	padding: 1px 4px;
+}
+.links:hover{
+	background-color: rgba(255,224,51,0.6);
+}
+#sidebar{
+	background: #fafafa;
+	z-index: 10;
+	top: 0px;
+	padding-top: 48px;
+}
+textarea:focus, input:focus{
+    outline: 0;
+}
+::-webkit-input-placeholder
+{
+  color: rgba(255,224,51,0.1);;
+}
+
+/*---music page---*/
+.photo {
+	display: none;
+}
+#searchMusicBox{
+	border: none;
+	margin-bottom: 10px;
+	background: #fafafa;
+	font-size: 100px;
+	text-transform: uppercase;
+	font-weight: 600;
+	width: 100%;
+	color: rgba(255,224,51,0.6);
+	letter-spacing: -2px;
+}
+#searchMusicBox::selection {
+	background-color: rgba(255,224,51,0.6);
+	color: whitesmoke;
+}
+#albumTable{
+	overflow: auto;
+}
+.albumCovers{
+	margin: 0px 20px 20px 0px;
+	float: left;
+}
+.coverArtwork img{
+	height: 150px;
+}
+
+#songTable{
+	display: table;
+}
+#songTable hr{
+	width: 100%
+}
+.songTableHeader{
+	display: table-header-group;
+}
+.songTableHeader .songCell{
+	padding: 1px 4px;
+	text-decoration: underline;
+}
+.songCell{
+	display: table-cell; 
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding-right: 40px;
+}
+.songRow{
+	display: table-row; 
+}
+.titleCell{
+	width: 325px;
+	max-width: 325px;
+}
+.artistCell{
+	width: 125px;
+	max-width: 125px;
+}
+.albumCell{
+	width: 350px;
+	max-width: 350px;
+}

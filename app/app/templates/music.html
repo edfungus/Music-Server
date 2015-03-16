@@ -49,7 +49,7 @@
 				var artist = $(this).parent().next().children().text();
 				var album = $(this).parent().next().next().children().text();;
 
-				if(mouseClicks === 1) {										//one click - add to queue
+				if(mouseClicks === 1) {										//one click - play
 
 					link = this;
 					timer = setTimeout(function(link) {
@@ -57,34 +57,34 @@
 
 						$.ajax({
 							type: "POST",
-							url: "/music/queue",
+							url: "/music/play",
 							dataType: "json",
 							data: { artist: artist,
 									title: title,
 									album: album },
 							cache: false,
 							success: function(){
-								$('#nowPlaying').css('background-color','rgba(250,128,114,0.2)');
-								$('#nowPlaying').animate({backgroundColor:'rgba(250,128,114,0)'}, 1000);
+								$('#nowPlaying').css('background-color','rgba(255,224,51,0.6)');
+								$('#nowPlaying').animate({backgroundColor:'rgba(255,224,51,0)'}, 1000);
 							}
 						});
 					}, delay);
 
-				} else {												//double click - add the queue and play
+				} else {												//double click - add to queue
 					clearTimeout(timer);  //prevent single-click action
 					mouseClicks = 0;
 
 					$.ajax({
 						type: "POST",
-						url: "/music/play",
+						url: "/music/queue",
 						dataType: "json",
 						data: { artist: artist,
 								title: title,
 								album: album },
 						cache: false,
 						success: function(){
-							$('#nowPlaying').css('background-color','rgba(255,224,51,0.6)');
-							$('#nowPlaying').animate({backgroundColor:'rgba(255,224,51,0)'}, 1000);
+							$('#nowPlaying').css('background-color','rgba(250,128,114,0.2)');
+							$('#nowPlaying').animate({backgroundColor:'rgba(250,128,114,0)'}, 1000);
 						}
 					});
 				}

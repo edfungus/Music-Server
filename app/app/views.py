@@ -12,7 +12,8 @@ def home():
 			'artist': 'artist',
 			'album': 'album'
 	}
-	return render_template('home.html',title='home',display=display)
+	songs = queue.getList()
+	return render_template('home.html',title='home',songs=songs, display=display)
 
 @app.route('/music')						
 def music():
@@ -45,6 +46,16 @@ def playPauseMusic():
 	queue.playPause()
 	return ''
 
+@app.route('/music/next', methods=['POST'])
+def musicNextSong():
+	playSong(queue.nextPrev('next'))
+	return ''
+
+@app.route('/music/previous', methods=['POST'])
+def musicPreviousSong():
+	playSong(queue.nextPrev('previous'))
+	return ''
+
 @app.route('/music/play', methods=['POST'])
 def musicQueueThenPlay():
 	artist = request.form['artist']
@@ -59,6 +70,13 @@ def musicQueue():
 	title = request.form['title']
 	album = request.form['album']
 	queue.queueSong(artist,title,album)
+	return '{"status": "done"}'
+
+@app.route('/music/queueRemove', methods=['POST'])
+def musicQueueRemove():
+	artist = request.form['artist']
+	title = request.form['title']
+	queue.queueRemove(artist,title)
 	return '{"status": "done"}'
 
 @app.route('/settings')

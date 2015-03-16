@@ -1,0 +1,515 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	color: inherit;
+	font: inherit;
+	vertical-align: baseline;
+}
+body {
+	font: 13px/1.5 monospace;
+	-webkit-font-smoothing: antialiased;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote {
+	border-left: 1px solid;
+	margin: 16px 0;
+	padding-left: 16px;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: Open Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-weight: 700;
+}
+h1 { font-size: 20px }
+h2 { font-size: 18px }
+h3 { font-size: 16px }
+h4 { font-size: 14px }
+h5 { font-size: 12px }
+h6 { font-size: 10px }
+h1, h2, h3, h4, h5, h6, p, blockquote, ul, ol {
+	margin: 16px 0;
+}
+li {
+	margin: 16px;
+}
+h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child, p:first-child, blockquote:first-child, ul:first-child, ol:first-child, li:first-child {
+	margin-top: 0;
+}
+h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:last-child, p:last-child, blockquote:last-child, ul:last-child, ol:last-child, li:last-child {
+	margin-bottom: 0;
+}
+[align="left"] {
+	text-align: left;
+}
+[align="center"] {
+	text-align: center;
+}
+[align="right"] {
+	text-align: right;
+}
+strong {
+	font-weight: bold;
+}
+	strong strong {
+		font-weight: bolder;
+	}
+em {
+	font-style: italic;
+}
+a:hover, a:hover * {
+	transition: color 100ms ease, background-color 100ms ease;
+		-moz-transition: color 100ms ease, background-color 100ms ease;
+			-webkit-transition: color 100ms ease, background-color 100ms ease;
+}
+			
+.central_container {
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+	.central_container .inner_container {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	
+#sidebar {		
+	width: 128px;
+	position: fixed;
+	top: 48px;
+	left: 24px;
+	text-align: center;
+}
+	#sidebar_title {
+		display: block;
+		margin-bottom: 48px;
+		text-decoration: none;
+	}
+	.has_description #sidebar_title {
+		margin-bottom: 12px;
+	}
+		#sidebar_title img {
+			height: auto;
+			max-width: 100%;
+		}
+		#sidebar_portrait {
+			width: 48px;
+			height: 48px;
+			margin: auto;
+			background: 50% 50% no-repeat;
+			background-size: cover;
+		}
+		#sidebar_portrait.square {
+			border-radius: 4px;
+		}
+		#sidebar_portrait.circle {
+			border-radius: 48px;
+		}
+	#sidebar_description {
+		margin-bottom: 24px;
+		font-size: 12px;
+	}
+	#sidebar h6 {
+		margin: 0;
+		margin-bottom: 8px;
+	}
+	#sidebar ul {
+		margin: 0;
+		margin-bottom: 32px;
+		list-style: none;
+	}
+		#sidebar li {
+			margin: 0;
+			margin-bottom: 4px;
+			white-space: nowrap;
+			font-size: 11px;
+		}
+			#sidebar li a {
+				margin-bottom: 1px;
+				padding: 1px 4px;
+				display: inline-block;
+				border-bottom-width: 1px;
+				box-sizing: border-box;
+				text-decoration: none;
+			}
+			#sidebar li a:hover {
+				margin: 0;
+				margin-bottom: 1px;
+				padding: 1px 4px;
+			}
+			#search {
+				width: 100%;
+				margin: 0;
+				padding: 0;
+				background: none;
+				border: 0;
+				color: inherit;
+				font: inherit;
+				text-align: center;
+				outline: none;
+			}
+	#pagination {
+		margin-top: 48px;
+		text-transform: capitalize;
+	}
+
+#posts {
+	position: relative;
+	margin: 40px 40px 40px 168px;
+}
+	.post {
+		position: relative;
+		margin: 8px;
+		transition: opacity 250ms ease, top 250ms ease, left 250ms ease;
+			-moz-transition: opacity 250ms ease, top 250ms ease, left 250ms ease;
+				-webkit-transition: opacity 250ms ease, top 250ms ease, left 250ms ease;
+	}
+	.index_page .post {
+		width: 400px;
+		opacity: 0;
+	}
+	.permalink_page .post {
+		width: 700px;
+		opacity: 1;
+	}
+	.post.fixed {
+		position: fixed !important;
+		top: initial !important;
+		left: initial !important;
+	}
+		.index_page .post .inner {
+			padding: 8px;
+		}
+			.post .link_container {
+				position: relative;
+				padding: 12px 18px;
+				padding-right: 36px;
+				background: #000;
+				color: #FFF;
+				text-align: center;
+			}
+			.post .link_container:after {
+				content: "";
+				width: 16px;
+				height: 16px;
+				position: absolute;
+				top: 50%;
+				right: 18px;
+				margin-top: -8px;
+				border-top: 1px solid #FFF;
+				border-right: 1px solid #FFF;
+				box-sizing: border-box;
+					-moz-box-sizing: border-box;
+						-webkit-box-sizing: border-box;
+				transform: rotate(45deg);
+					-moz-transform: rotate(45deg);
+						-ms-transform: rotate(45deg);
+							-webkit-transform: rotate(45deg);
+			}
+				.post .link_container a {
+					text-decoration: none;
+				}
+				.post .link_container h4 {
+					margin-bottom: 8px;
+					overflow: hidden;
+					white-space: nowrap;
+					color: inherit;
+					text-overflow: ellipsis;
+				}
+				.post .link_container p {
+					margin-top: 8px;
+				}
+			.post .inner img {
+				max-width: 100%;
+				height: auto;
+			}
+		.post .main_image {
+			width: 100%;
+			display: block;
+		}
+		.permalink_page .post .main_image {
+			height: auto;
+		}
+		.post.video .post_media {
+			width: 100%;
+			height: 250px;
+			background: 50% 50% no-repeat #222;
+			background-size: cover;
+		}
+			.post .post_media .retro_fuzz {
+				width: 100%;
+				height: 100%;
+				background: url("http://static.tumblr.com/m9ln1jy/wAgn1a6mi/video_static_animated.gif") 50% 50% repeat #222;
+				opacity: 0.04;
+			}
+		.post .post_media iframe {
+			width: 100%;
+		}
+		.permalink_page .post.audio .post_media iframe {
+			width: 700px;
+			height: 700px;
+		}
+		.post .read_more {
+			padding: 8px;
+			border-top: 1px dotted;
+			text-align: center;
+			text-transform: capitalize;
+		}
+			.post .read_more a {
+				text-decoration: none;
+			}
+		.post .post_information {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			color: #FFF;
+			text-align: center;
+			opacity: 0;
+			transition: opacity 100ms ease;
+				-moz-transition: opacity 100ms ease;
+					-webkit-transition: opacity 100ms ease;
+		}
+		.post.photo			.post_information,
+		.post.photoset			.post_information,
+		.post.video			.post_information,
+		.post.audio:not(.audio_embed)	.post_information {
+			background: #000;
+			background: linear-gradient(bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 100%);
+				background: -moz-linear-gradient(bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 100%);
+					background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.6) 100%);
+		}
+		.post:hover .post_information {
+			opacity: 1;
+		}
+			.post .post_information a {
+				text-decoration: none;
+			}
+			.post .post_controls {
+				display: inline-block;
+			}
+			.post.text		.post_controls,
+			.post.link		.post_controls,
+			.post.quote		.post_controls,
+			.post.chat		.post_controls,
+			.post.answer		.post_controls,
+			.post.audio_embed	.post_controls {
+				padding: 12px 16px;
+				background: #000;
+			}
+				.post .post_controls .like_button,
+				.post .post_controls .reblog_button,
+				.post .post_controls .note_count {
+					display: inline-block !important;
+					margin-right: 8px;
+					vertical-align: middle;
+				}
+				.post .post_controls .like_button {
+					height: 24px;
+				}
+					.like_button svg{
+						fill: white;					
+					}
+				.post .post_controls .note_count {
+					padding: 4px 8px;
+					border: 1px solid #FFF;
+					border-radius: 4px;
+					font-size: 16px;
+					line-height: 1.2;
+				}
+				.post .post_controls .reblog_button:last-child,
+				.post .post_controls .note_count {
+					margin-right: 0;
+				}
+			.post .evaluatr {
+				margin-top: 17px;
+			}
+			.post.text		.evaluatr,
+			.post.link		.evaluatr,
+			.post.quote		.evaluatr,
+			.post.chat		.evaluatr,
+			.post.answer		.evaluatr,
+			.post.audio_embed	.evaluatr {
+				padding: 12px 16px;
+				background: #000;
+			}
+			.post .date_and_source {
+				margin-top: 32px;
+			}
+			.post .date_and_source h6 {
+				color: #FFF;
+			}
+			.post.text		.date_and_source,
+			.post.link		.date_and_source,
+			.post.quote		.date_and_source,
+			.post.chat		.date_and_source,
+			.post.answer		.date_and_source,
+			.post.audio_embed	.date_and_source {
+				margin-top: 16px;
+			}
+				.post.text		.post_meta h6,
+				.post.link		.post_meta h6,
+				.post.quote		.post_meta h6,
+				.post.chat		.post_meta h6,
+				.post.answer		.post_meta h6,
+				.post.audio_embed	.post_meta h6 {
+					margin: 0;
+					padding: 8px 16px;
+					display: inline-block;
+					background: #000;
+				}
+			.post .post_meta.tags {
+				margin: 16px 32px;
+				margin-bottom: 0;
+				display: inline-block;
+				font-size: 12px;
+			}
+				.post .post_meta.tags a {
+					margin: 2px 6px;
+					display: inline-block;
+				}
+				.post .post_meta.tags a:hover {
+					margin: 0;
+					padding: 2px 6px;
+					background: #FFF;
+					color: #000;
+				}
+				.post.text		.post_meta.tags a,
+				.post.link		.post_meta.tags a,
+				.post.quote		.post_meta.tags a,
+				.post.chat		.post_meta.tags a,
+				.post.answer		.post_meta.tags a,
+				.post.audio_embed	.post_meta.tags a {
+					margin: 0;
+					padding: 2px 6px;
+					background: #000;
+					color: #FFF;
+				}
+
+	#post_information {
+		width: 320px;
+	}
+		#post_information .audio_player,
+		#post_information .tumblr_audio_player {
+			width: 320px;
+			height: 70px;
+		}
+		#post_information h6 {
+			margin: 0;
+			margin-bottom: 8px;
+		}
+		.post_information_sec {
+			margin-bottom: 32px;
+		}
+		.post_information_sec:last-child {
+			margin-bottom: 0;
+		}
+		#post_notes .notes {
+			list-style: none;
+			font-size: 11px;
+		}
+			#post_notes .notes li {
+				margin: 8px 0;
+			}
+				#post_notes .notes .avatar {
+					width: 24px;
+					height: 24px;
+					display: inline-block;
+					margin-right: 4px;
+					vertical-align: middle;
+				}
+				#post_notes .notes .tumblelog,
+				#post_notes .notes .like .action a {
+					display: none;
+				}
+
+#infscr-loading {
+	display: none;
+}
+
+@media screen and (max-width: 924px) {
+	.permalink_page .post,
+	#post_information {
+		width: 400px;
+	}
+	.permalink_page .post.audio .post_media iframe {
+		width: 400px;
+		height: 400px;
+	}
+	#post_information .audio_player,
+	#post_information .tumblr_audio_player {
+		width: 400px;
+	}
+}
+@media screen and (max-width: 626px) {
+	#sidebar {
+		position: relative;
+		top: 0;
+		left: 0;
+		margin: 16px auto;
+		margin-top: 48px;
+	}
+	#sidebar_title {
+		margin-bottom: 40px;
+	}
+	#sidebar ul {
+		margin-bottom: 24px;
+	}
+	#pagination {
+		display: none;
+	}
+	#posts {
+		width: 400px;
+		margin: 8px auto;
+	}
+	.index_page .post,
+	.permalink_page .post,
+	#post_information {
+		margin: 8px 0;
+	}
+}
+@media screen and (max-width: 400px) {
+	#posts {
+		width: 100%;
+		margin: 8px 0;
+	}
+	.index_page .post,
+	.permalink_page .post,
+	#post_information {
+		width: 100%;
+	}
+	.post .main_image {
+		height: auto;
+	}
+	.post.video .post_media {
+		height: 200px;
+	}
+	.index_page .post.audio .post_media iframe,
+	.permalink_page .post.audio .post_media iframe {
+		width: 100%;
+	}
+	.permalink_page .post_information_sec {
+		padding: 0 8px;
+	}
+	#post_information .audio_player,
+	#post_information .tumblr_audio_player {
+		width: 100%;
+	}
+	.post .inner {
+		padding: 0 8px;
+	}
+}

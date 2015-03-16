@@ -9,15 +9,15 @@ import urllib2
 
 import time
 
-tester = 5
 
-def test():
+def musicPlayer():	#ensures that the next song plays afterwards
 	global queue
-	global tester
-	tester = 6
-	queue.current = 'sdfds'
-	pygame.mixer.music.pause()
-
+	while pygame.mixer.music.get_busy():
+		time.sleep(1)
+	if queue.songRemoved == False:
+		playSong(queue.nextPrev('next'))
+	queue.songRemoved == False
+	return
 
 def playSong(song):			#receives data from queue.queue
 	artist = song['artist']
@@ -33,12 +33,9 @@ def playSong(song):			#receives data from queue.queue
 	except:
 		print 'Could not play file: ' + title + ' by ' + artist + '. DB search is ' + str(db_search)
 
-	
-	time.sleep(5)
-	testthread = Thread(target=test)
-	testthread.start()
-	print queue.current
-	print tester
+	queue.songRemoved = False
+	playMusicThread = Thread(target=musicPlayer)
+	playMusicThread.start()
 
 	return
 
