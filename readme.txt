@@ -1,9 +1,9 @@
 Music Server
 Edmund Fung - 2014
 
-This is running off Flask in virtualenv. Use 'source env/bin/activate' to activate this virtualenv for this instance of terminal
+This is running off Flask in virtualenv. Use 'source env/bin/activate' to activate this virtualenv for this instance of terminal. Also the 'music_files' directory in root and 'music_artwork' folder in static are missing because they contain copyrighted music.
 
-packages:
+Packages:
 pip install flask-sqlalchemy
 pip install eyed3
 pip install sqlalchemy-migrate
